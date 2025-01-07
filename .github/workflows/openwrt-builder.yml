@@ -40,6 +40,9 @@ jobs:
   build:
     runs-on: ubuntu-22.04
 
+    permissions:
+      contents: write
+
     steps:
     - name: Checkout
       uses: actions/checkout@main
@@ -149,12 +152,11 @@ jobs:
       uses: softprops/action-gh-release@master
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
-        token: ${{ secrets.RELEASE_TOKEN }}
 
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
