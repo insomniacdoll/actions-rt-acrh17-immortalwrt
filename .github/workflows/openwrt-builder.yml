@@ -124,7 +124,7 @@ jobs:
         mkdir -p openwrt/bin/targets
         touch openwrt/bin/targets/test.txt
         # cd openwrt/bin/targets/*/*
-        cd openwrt/bin/target
+        cd openwrt/bin/targets
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
